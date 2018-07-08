@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <title>简介编辑器</title>
+  <link rel="stylesheet" href="./css/default.css">
+</head>
+<body>
+  <div class="page" id="app">
+    <aside>
+      <div class="upper">
+        <ul>
+          <li><span>保存</span></li>
+          <li><span>打印</span></li>
+          <li><span>换肤</span></li>
+          <li><span>打印</span></li>
+        </ul>
+      </div>
+      <div class="lower">
+        <span>登出</span>
+      </div>
+    </aside>
+    <main>
+      <div class="resume">
+        <section class="profile">
+          <editable-span v-bind:value="resume.name" v-on:edit="onEdit('name', $event)"></editable-span>
+          <p>应聘职位: <editable-span v-bind:value="resume.jobObject" v-on:edit="onEdit('jobObject', $event)"></editable-span></p>
+          <p class="basic">
+            {{ resume.birth }} | {{ resume.gender }} | {{ resume.email }} | {{ resume.telephone }}
+          </p>
+        </section>
+        <section class="skills">
+          <h2>技能</h2>
+          <ul>
+            <li>
+              <span class="name">VUE</span>
+              <div class="description">VUE全家桶了解一下</div>
+            </li>
+            <li>
+              <span class="name">VUE</span>
+              <div class="description">VUE全家桶了解一下</div>
+            </li>
+            <li>
+              <span class="name">VUE</span>
+              <div class="description">VUE全家桶了解一下</div>
+            </li>
+            <li>
+              <span class="name">VUE</span>
+              <div class="description">VUE全家桶了解一下</div>
+            </li>
+          </ul>
+        </section>
+        <section class="projects">
+          <h2>项目经验</h2>
+          <ol>
+            <li>
+              <header>
+                <h3 class="name">项目名</h3>
+                <span class="link">http://xxxxxx.com</span>
+                <span class="keywords">关键词</span>
+              </header>
+              <p class="description">项目介绍</p>
+            </li>
+            <li>
+              <header>
+                <h3 class="name">项目名</h3>
+                <span class="link">http://xxxxxx.com</span>
+                <span class="keywords">关键词</span>
+              </header>
+              <p class="description">项目介绍</p>
+            </li>
+            <li>
+              <header>
+                <h3 class="name">项目名</h3>
+                <span class="link">http://xxxxxx.com</span>
+                <span class="keywords">关键词</span>
+              </header>
+              <p class="description">项目介绍</p>
+            </li>
+            <li>
+              <header>
+                <h3 class="name">项目名</h3>
+                <span class="link">http://xxxxxx.com</span>
+                <span class="keywords">关键词</span>
+              </header>
+              <p class="description">项目介绍</p>
+            </li>
+          </ol>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="../vendors/av-min.js"></script>
+  <script src="../vendors/vue.min.js"></script>
+  <script src="./js/av.js"></script>
+  <script src="./js/aditable-span.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
