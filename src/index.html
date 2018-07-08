@@ -4,27 +4,29 @@
   <meta charset="UTF-8">
   <title>简介编辑器</title>
   <link rel="stylesheet" href="./css/default.css">
+  <link rel="stylesheet" href="./css/login.css">
+  <link rel="stylesheet" href="./css/signUp.css">
 </head>
 <body>
   <div class="page" id="app">
     <aside>
       <div class="upper">
         <ul>
-          <li><span>保存</span></li>
+          <li><span @click="onClickSave">保存</span></li>
           <li><span>打印</span></li>
           <li><span>换肤</span></li>
-          <li><span>打印</span></li>
+          <li><span>分享</span></li>
         </ul>
       </div>
       <div class="lower">
-        <span>登出</span>
+        <span @click="onLogout">登出</span>
       </div>
     </aside>
     <main>
       <div class="resume">
         <section class="profile">
-          <editable-span v-bind:value="resume.name" v-on:edit="onEdit('name', $event)"></editable-span>
-          <p>应聘职位: <editable-span v-bind:value="resume.jobObject" v-on:edit="onEdit('jobObject', $event)"></editable-span></p>
+          <editable-span :value="resume.name" @edit="onEdit('name', $event)"></editable-span>
+          <p>应聘职位: <editable-span :value="resume.jobObject" @edit="onEdit('jobObject', $event)"></editable-span></p>
           <p class="basic">
             {{ resume.birth }} | {{ resume.gender }} | {{ resume.email }} | {{ resume.telephone }}
           </p>
@@ -89,8 +91,41 @@
         </section>
       </div>
     </main>
+    <div class="login" v-show="loginVisible" v-cloak>
+      <form class="loginForm" @submit.prevent="onLogin">
+        <h1>登录</h1>
+        <div class="row">
+          <label>邮箱</label>
+          <input type="text" v-model="login.email">
+        </div>
+        <div class="row">
+          <label>密码</label>
+          <input type="password" v-model="login.password">
+        </div>
+        <div class="actions">
+          <button type="submit">提交</button>
+          <a href="#" @click="signUpVisible = true; loginVisible = false">注册</a>
+        </div>
+      </form>
+    </div>
+    <div class="signUp" v-show="signUpVisible" v-cloak>
+      <form class="signUpForm" @submit.prevent="onSignUp">
+        <h1>注册</h1>
+        <div class="row">
+          <label>邮箱</label>
+          <input type="text" v-model="signUp.email">
+        </div>
+        <div class="row">
+          <label>密码</label>
+          <input type="password"  v-model="signUp.password">
+        </div>
+        <div class="actions">
+          <button type="submit">提交</button>
+          <a href="#" @click="signUpVisible=false; loginVisible=true;">登录</a>
+        </div>
+      </form>
+    </div>
   </div>
-
   <script src="../vendors/av-min.js"></script>
   <script src="../vendors/vue.min.js"></script>
   <script src="./js/av.js"></script>
