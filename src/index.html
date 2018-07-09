@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="./css/default.css">
   <link rel="stylesheet" href="./css/login.css">
   <link rel="stylesheet" href="./css/signUp.css">
+  <link rel="stylesheet" href="./css/share.css">
 </head>
 <body>
   <div class="page" id="app">
@@ -15,7 +16,7 @@
           <li><span @click="onClickSave">保存</span></li>
           <li><span>打印</span></li>
           <li><span>换肤</span></li>
-          <li><span>分享</span></li>
+          <li><span @click="shareVisible = true">分享</span></li>
         </ul>
       </div>
       <div class="lower">
@@ -23,7 +24,6 @@
       </div>
     </aside>
     <main>
-      {{resume}}
       <div class="resume">
         <section class="profile">
           <editable-span :value="resume.name" @edit="onEdit('name', $event)"></editable-span>
@@ -101,6 +101,9 @@
           <a href="#" @click="signUpVisible=false; loginVisible=true;">登录</a>
         </div>
       </form>
+    </div>
+    <div class="share" v-show="shareVisible" v-cloak>
+      <textarea readonly>{{shareLink}}</textarea>
     </div>
   </div>
   <script src="../vendors/av-min.js"></script>
