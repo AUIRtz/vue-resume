@@ -50,37 +50,19 @@
         <section class="projects">
           <h2>项目经验</h2>
           <ol>
-            <li>
+            <li v-for="item,index in resume.projects">
               <header>
-                <h3 class="name">项目名</h3>
-                <span class="link">http://xxxxxx.com</span>
-                <span class="keywords">关键词</span>
+                <h3 class="name">
+                  <editable-span :value="item.name" @edit="onEdit(`projects[${index}].name`, $event)"></editable-span>
+                </h3>
+                <editable-span class="link" :value="item.link" @emit="onEdit(`projects[${index}].link`, $event)"></editable-span>
+                <editable-span class="keywords" :value="item.keywords" @emit="onEdit(`projects[${index}].keywords`, $event)"></editable-span>
               </header>
-              <p class="description">项目介绍</p>
+              <editable-span class="description" :value="item.description" @emit="onEdit(`projects[${index}].description`, $event)"></editable-span>
+            <span v-if="index >=2" @click="removeProject(index)">x</span>
             </li>
             <li>
-              <header>
-                <h3 class="name">项目名</h3>
-                <span class="link">http://xxxxxx.com</span>
-                <span class="keywords">关键词</span>
-              </header>
-              <p class="description">项目介绍</p>
-            </li>
-            <li>
-              <header>
-                <h3 class="name">项目名</h3>
-                <span class="link">http://xxxxxx.com</span>
-                <span class="keywords">关键词</span>
-              </header>
-              <p class="description">项目介绍</p>
-            </li>
-            <li>
-              <header>
-                <h3 class="name">项目名</h3>
-                <span class="link">http://xxxxxx.com</span>
-                <span class="keywords">关键词</span>
-              </header>
-              <p class="description">项目介绍</p>
+              <span @click="addProject">添加</span>
             </li>
           </ol>
         </section>
