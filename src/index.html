@@ -19,10 +19,11 @@
         </ul>
       </div>
       <div class="lower">
-        <span @click="onLogout">登出</span>
+        <span @click="onLogout" v-show="!!currentUser.objectId">登出</span>
       </div>
     </aside>
     <main>
+      {{resume}}
       <div class="resume">
         <section class="profile">
           <editable-span :value="resume.name" @edit="onEdit('name', $event)"></editable-span>
@@ -34,21 +35,15 @@
         <section class="skills">
           <h2>技能</h2>
           <ul>
-            <li>
-              <span class="name">VUE</span>
-              <div class="description">VUE全家桶了解一下</div>
+            <li v-for="skill,index in resume.skills">
+              <editable-span class="name" :value="skill.name" @edit="onEdit(`skills[${index}].name`, $event)"></editable-span>
+              <div>
+                <editable-span class="description" :value="skill.description" @edit="onEdit(`skills[${index}]`, $event)"></editable-span>
+              </div>
+              <span  class="remove" v-if="index >= 4" @click="removeSkill(index)">x</span>
             </li>
             <li>
-              <span class="name">VUE</span>
-              <div class="description">VUE全家桶了解一下</div>
-            </li>
-            <li>
-              <span class="name">VUE</span>
-              <div class="description">VUE全家桶了解一下</div>
-            </li>
-            <li>
-              <span class="name">VUE</span>
-              <div class="description">VUE全家桶了解一下</div>
+              <span @click="addSkill">添加</span>
             </li>
           </ul>
         </section>
