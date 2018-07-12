@@ -98,20 +98,8 @@ let app = new Vue({
       return query.get(user.objectId).then((user) =>{
         let resume = user.toJSON().resume
         return resume
-      }, function (error) {
-      });
-    },
-    addSkill(){
-      this.resume.skills.push({name: '技能名称', description: '简介'})
-    },
-    removeSkill(index){
-      this.resume.skills.splice(index, 1)
-    },
-    addProject(){
-      this.resume.projects.push({name: '项目名称', link: 'http://....', keywords: '关键词', description: '项目简介'})
-    },
-    removeProject(index){
-      this.resume.projects.splice(index, 1)
+      },(error) =>{
+      })
     },
     print(){
       window.print()
